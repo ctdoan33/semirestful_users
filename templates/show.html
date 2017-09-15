@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show User</title>
+</head>
+<body>
+    <h1>User {{id}}</h1>
+    <p>Full Name: {{friend["full_name"]}}</p>
+    <p>Email: {{friend["email"]}}</p>
+    <p>Created at: {{friend["date"]}}</p>
+    <form action="/users/{{id}}/edit" method="get" style="display: inline">
+        <input type="submit" value="Edit">
+    </form>
+    <form action="/users/{{id}}/destroy" method="get" style="display: inline">
+        <input type="submit" value="Delete">
+    </form>
+    <form action="/users" method="get" style="display: inline">
+        <input type="submit" value="Go Back">
+    </form>
+</body>
+</html>

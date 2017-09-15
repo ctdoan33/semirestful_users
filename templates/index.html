@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users Index</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for friend in all_friends %}
+            <tr>
+                <td>{{friend["id"]}}</td>
+                <td>
+                    <form action="/users/{{friend['id']}}" method="get">
+                        <input type="submit" value='{{friend["full_name"]}}'>
+                    </form>
+                </td>
+                <td>{{friend["email"]}}</td>
+                <td>{{friend["date"]}}</td>
+                <td>
+                    <form action="/users/{{friend['id']}}" method="get" style="display: inline">
+                        <input type="submit" value="Show">
+                    </form>
+                    <form action="/users/{{friend['id']}}/edit" method="get" style="display: inline">
+                        <input type="submit" value="Edit">
+                    </form>
+                    <form action="/users/{{friend['id']}}/destroy" method="get" style="display: inline">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/users/new" method="get">
+        <input type="submit" value="Add a new user">
+    </form>
+</body>
+</html>
