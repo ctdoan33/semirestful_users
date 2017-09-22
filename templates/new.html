@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>New User</title>
 </head>
 <body>
@@ -22,10 +23,8 @@
         <input type="text" name="last_name">
         <p>Email:</p>
         <input type="text" name="email">
-        <input type="submit" value="Create">
+        <p><input class="submit" type="submit" value="Create"></p>
     </form>
-    <form action="/users" method="get">
-        <input type="submit" value="Go Back">
-    </form>
+    <a href="/users">Go Back</a>
 </body>
 </html>

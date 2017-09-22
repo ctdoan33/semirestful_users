@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Edit User {{id}}</title>
 </head>
 <body>
@@ -22,14 +23,11 @@
         <input type="text" name="last_name" value='{{friend["last_name"]}}'>
         <p>Email:</p>
         <input type="text" name="email" value='{{friend["email"]}}'>
-        <br>
-        <input type="submit" value="Update">
+        <p><input class="submit" type="submit" value="Update"></p>
     </form>
-    <form action="/users/{{id}}" method="get" style="display: inline">
-        <input type="submit" value="Show">
-    </form>
-    <form action="/users" method="get" style="display: inline">
-        <input type="submit" value="Go Back">
-    </form>
+    <p>
+        <a href="/users/{{id}}">Show</a> | 
+        <a href="/users">Go Back</a>
+    </p>
 </body>
 </html>

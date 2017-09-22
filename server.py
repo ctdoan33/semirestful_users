@@ -6,7 +6,10 @@ EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")
 app = Flask(__name__)
 app.secret_key = "KeepItSecretKeepItSafe"
 mysql = MySQLConnector(app,'friendsdb')
-@app.route('/users', methods=["GET"])
+@app.route('/')
+def indexredirect():
+    return redirect("/")
+@app.route('/users')
 def index():
     query = "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name, email, DATE_FORMAT(created_at, '%M %D, %Y') AS date FROM friends"
     friends = mysql.query_db(query)
@@ -34,28 +37,28 @@ def show(id):
 def create():
     valid = True
     if len(request.form["first_name"]) < 1:
-        flash("First name must not be blank!", "reg")
+        flash("First name must not be blank!")
         valid = False
     elif len(request.form["first_name"]) < 2:
-        flash("First name must be at least 2 letters!", "reg")
+        flash("First name must be at least 2 letters!")
         valid = False
     elif not LETTER_REGEX.match(request.form["first_name"]):
-        flash("First name must be letters only!", "reg")
+        flash("First name must be letters only!")
         valid = False
     if len(request.form["last_name"]) < 1:
-        flash("Last name cannot be blank!", "reg")
+        flash("Last name cannot be blank!")
         valid = False
     elif len(request.form["last_name"]) < 2:
-        flash("Last name must be at least 2 letters!", "reg")
+        flash("Last name must be at least 2 letters!")
         valid = False
     elif not LETTER_REGEX.match(request.form["last_name"]):
-        flash("Last name must be letters only!", "reg")
+        flash("Last name must be letters only!")
         valid = False
     if len(request.form["email"]) < 1:
-        flash("Email must not be blank!", "reg")
+        flash("Email must not be blank!")
         valid = False
     elif not EMAIL_REGEX.match(request.form["email"]):
-        flash("Invalid email!", "reg")
+        flash("Invalid email!")
         valid = False
     if valid:
         query = "INSERT INTO friends (first_name, last_name, email, created_at, updated_at) VALUES (:first_name, :last_name, :email, NOW(), NOW())"
@@ -80,28 +83,28 @@ def delete(id):
 def update(id):
     valid = True
     if len(request.form["first_name"]) < 1:
-        flash("First name must not be blank!", "reg")
+        flash("First name must not be blank!")
         valid = False
     elif len(request.form["first_name"]) < 2:
-        flash("First name must be at least 2 letters!", "reg")
+        flash("First name must be at least 2 letters!")
         valid = False
     elif not LETTER_REGEX.match(request.form["first_name"]):
-        flash("First name must be letters only!", "reg")
+        flash("First name must be letters only!")
         valid = False
     if len(request.form["last_name"]) < 1:
-        flash("Last name cannot be blank!", "reg")
+        flash("Last name cannot be blank!")
         valid = False
     elif len(request.form["last_name"]) < 2:
-        flash("Last name must be at least 2 letters!", "reg")
+        flash("Last name must be at least 2 letters!")
         valid = False
     elif not LETTER_REGEX.match(request.form["last_name"]):
-        flash("Last name must be letters only!", "reg")
+        flash("Last name must be letters only!")
         valid = False
     if len(request.form["email"]) < 1:
-        flash("Email must not be blank!", "reg")
+        flash("Email must not be blank!")
         valid = False
     elif not EMAIL_REGEX.match(request.form["email"]):
-        flash("Invalid email!", "reg")
+        flash("Invalid email!")
         valid = False
     if valid:
         query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, email = :email WHERE id = :id"
@@ -112,8 +115,8 @@ def update(id):
                 'id': id
             }
         mysql.query_db(query, data)
-        return redirect('/users/'+str(id))
+        return redirect('/users/'+id)
     else:
-        return redirect("/users/"+str(id)+"/edit")
+        return redirect("/users/"+id+"/edit")
 
 app.run(debug=True)

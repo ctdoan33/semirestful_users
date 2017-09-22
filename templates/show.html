@@ -11,14 +11,10 @@
     <p>Full Name: {{friend["full_name"]}}</p>
     <p>Email: {{friend["email"]}}</p>
     <p>Created at: {{friend["date"]}}</p>
-    <form action="/users/{{id}}/edit" method="get" style="display: inline">
-        <input type="submit" value="Edit">
-    </form>
-    <form action="/users/{{id}}/destroy" method="get" style="display: inline">
-        <input type="submit" value="Delete">
-    </form>
-    <form action="/users" method="get" style="display: inline">
-        <input type="submit" value="Go Back">
-    </form>
+    <p>
+    <a href="/users/{{id}}/edit">Edit</a> | 
+    <a href="/users/{{id}}/destroy">Delete</a> | 
+    <a href="/users">Go Back</a>
+    </p>
 </body>
 </html>

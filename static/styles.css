@@ -1,0 +1,21 @@
+table{
+    text-align: left;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td{
+    border-right: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+th{
+    background-color: #E0E0E0;
+}
+tr:nth-child(odd){
+    background-color: #F0F0F0;
+}
+.submit{
+    color: white;
+    background-color: steelblue;
+    box-shadow: 2px 2px 1px black;
+}

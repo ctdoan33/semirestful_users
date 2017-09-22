@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Users Index</title>
 </head>
 <body>
@@ -23,29 +24,19 @@
             <tr>
                 <td>{{friend["id"]}}</td>
                 <td>
-                    <form action="/users/{{friend['id']}}" method="get">
-                        <input type="submit" value='{{friend["full_name"]}}'>
-                    </form>
+                    <a href="/users/{{friend['id']}}">{{friend["full_name"]}}</a>
                 </td>
                 <td>{{friend["email"]}}</td>
                 <td>{{friend["date"]}}</td>
                 <td>
-                    <form action="/users/{{friend['id']}}" method="get" style="display: inline">
-                        <input type="submit" value="Show">
-                    </form>
-                    <form action="/users/{{friend['id']}}/edit" method="get" style="display: inline">
-                        <input type="submit" value="Edit">
-                    </form>
-                    <form action="/users/{{friend['id']}}/destroy" method="get" style="display: inline">
-                        <input type="submit" value="Delete">
-                    </form>
+                    <a href="/users/{{friend['id']}}">Show</a>
+                    <a href="/users/{{friend['id']}}/edit">Edit</a>
+                    <a href="/users/{{friend['id']}}/destroy">Delete</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form action="/users/new" method="get">
-        <input type="submit" value="Add a new user">
-    </form>
+    <p><a href="/users/new">Add a new user</a></p>
 </body>
 </html>
